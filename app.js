@@ -4,8 +4,12 @@ const morgan = require('morgan');
 require('dotenv').config();
 const port = process.env.PORT;
 const mongoose = require('mongoose');
+
 app.use(express.json());
 app.use(morgan("dev"));
+
+const userRoutes = require('./src/routes/index.routes');
+app.use('/api/user' , userRoutes);
 
 async function main() {
     await mongoose.connect(process.env.MONGO_DB_URL);  
